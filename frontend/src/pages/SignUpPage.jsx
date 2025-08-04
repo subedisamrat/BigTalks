@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
+import toast from "react-hot-toast";
 
-function SignUpPage() {
+const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -20,9 +21,20 @@ function SignUpPage() {
     password: "",
   });
   const { signUp, isSigningUp } = useAuthStore();
-  const validateForm = () => {};
+  const validateForm = () => {
+    if (!formData.fullName.trim()) return toast.error("Full name is required");
+    if (!formData.email.trim()) return toast.error("Email is required");
+    if (!/\S+@\S+\.\S+/.test(formData.email))
+      return toast.error("Invalid email format");
+    if (!formData.password) return toast.error("Password is required");
+    if (formData.password.length < 6)
+      return toast.error("Password of at least 6 characters is required");
+    return true;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    const success = validateForm();
+    if (success === true) signUp(formData);
   };
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
@@ -54,7 +66,7 @@ function SignUpPage() {
                 <input
                   type="text"
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="John Doe"
+                  placeholder=""
                   value={formData.fullName}
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
@@ -74,7 +86,7 @@ function SignUpPage() {
                 <input
                   type="email"
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="you@example.com"
+                  placeholder=""
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -94,7 +106,7 @@ function SignUpPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="••••••••"
+                  placeholder=""
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
@@ -146,6 +158,6 @@ function SignUpPage() {
       />
     </div>
   );
-}
+};
 
 export default SignUpPage;

@@ -1,8 +1,24 @@
-# React + Vite
+# BigTalks 💬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**BigTalks** is a real-time chat app built using the **MERN stack** and **Socket.IO**. It was developed as a learning project to explore real-time communication, user presence, and state management using Zustand.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) 3 29 uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
+
+- **Frontend:** React.js, Zustand, Tailwind CSS
+- **Backend:** Node.js, Express.js, MongoDB
+- **Realtime:** Socket.IO
+- **Other:** Cloudinary (image uploads), Axios, React Hot Toast
+
+---
+
+## ✨ Features
+
+- User Signup & Login (with JWT)
+- Real-time messaging with Socket.IO
+- Online users list & status indicators
+- Profile picture upload via Cloudinary
+- Clean and responsive UI
+
+---

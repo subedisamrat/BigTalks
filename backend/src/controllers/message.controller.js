@@ -1,6 +1,7 @@
 import Message from "../models/Message.js";
 import User from "../models/User.js";
 import cloudinary from "../lib/cloudinary.js";
+import { getRecevierSocketId, io } from "../lib/socket.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
@@ -54,6 +55,10 @@ export const sendMessage = async (req, res) => {
 
     await newMessage.save();
     //Real time messaging functionality using Socket.io
+    const recieverSocketId = getRecevierSocketId(receiverId);
+    if (recieverSocketId) {
+      io.to(recieverSocketId).emit("newMessage", newMessage); //this "to" in the middle of "emit" is used specifically to that particular receiverId.
+    }
     res.status(200).json(newMessage);
   } catch (error) {
     console.log("Error in sendMessage controller", error);

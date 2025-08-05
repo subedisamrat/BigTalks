@@ -22,3 +22,21 @@
 - Clean and responsive UI
 
 ---
+
+# 📌 More TODO feature Ideas
+
+End-to-End Message Encryption
+
+Video Chat Support
+
+Audio Chat Support
+
+Typing Indicator
+
+Group Chat
+
+Message Reactions
+
+Read Receipts
+
+Push Notifications
